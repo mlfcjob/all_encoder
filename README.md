@@ -7,7 +7,12 @@ target: linux win32 win64
 prepare:
 @ you need to install cmake
 @ you need to install mingw-32 or mingw64
-
+ target win32:
+         yum install mingw32-gcc.x86_64
+         yum install mingw32-gcc-c++.x86_64
+ target win64:
+         yum install mingw64-gcc.x86_64
+         yum install mingw64-gcc-c++
 
 compile:
 
