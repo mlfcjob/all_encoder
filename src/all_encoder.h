@@ -45,6 +45,9 @@ typedef struct m_encoder{
 
     void *codec;
     void *param;
+
+    FILE *fp_log;
+    uint8_t enable_log;
 }m_encoder;
 
 void *x264_param_init(m_encoder *encoder);
