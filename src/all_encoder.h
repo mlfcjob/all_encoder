@@ -1,5 +1,5 @@
 #ifndef __ALL_ENCODER_H__
-#define __ALL_Z_ENCODER_H__
+#define __ALL_ENCODER_H__
 
 #include <stdio.h>
 #include <stdlib.h>
