@@ -50,7 +50,7 @@ typedef struct m_encoder{
 void *x264_param_init(m_encoder *encoder);
 void *x265_param_init(m_encoder *encoder);
 
-void z_fill_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size);
+void all_fill_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size);
 
 m_encoder *encoder_init(uint32_t codec_type, uint32_t width, uint32_t height,
                         uint32_t format);
