@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 
 #if defined __cplusplus
 extern "C"{
@@ -47,7 +48,7 @@ typedef struct m_encoder{
     void *param;
 
     FILE *fp_log;
-    uint8_t enable_log;
+    bool  enable_log;
 }m_encoder;
 
 void *x264_param_init(m_encoder *encoder);
@@ -56,7 +57,7 @@ void *x265_param_init(m_encoder *encoder);
 void all_fill_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size);
 
 m_encoder *encoder_init(uint32_t codec_type, uint32_t width, uint32_t height,
-                        uint32_t format);
+                        uint32_t format, bool enable_log);
 void encoder_open(m_encoder*);
 void encoder_encode(m_encoder* encoder, uint8_t **output_buf, uint32_t *output_size);
 void encoder_close(m_encoder*);

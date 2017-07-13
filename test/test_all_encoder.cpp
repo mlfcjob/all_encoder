@@ -6,8 +6,8 @@ m_encoder *encoder;
 
 int main(int argc, char **argv)
 {
-    if (argc < 5) {
-        printf("usage, [exec] [in_file] [encoder] [width] [height]...\n");
+    if (argc < 6) {
+        printf("usage, [exec] [in_file] [encodec] [width] [height] [log]...\n");
         return -1;
     }
 
@@ -21,6 +21,8 @@ int main(int argc, char **argv)
     uint32_t input_size = width * height * 3 / 2;
     uint8_t *input_buf = (uint8_t*)malloc(input_size);
 
+	bool enable_log = atoi(argv[5]) == 1 ? true : false;
+
     int i, j;
     fseek(fp, 0, SEEK_END);
     int frame_num = ftell(fp) / input_size;
@@ -33,10 +35,10 @@ int main(int argc, char **argv)
 
     switch(atoi(argv[2])) {
         case 1:
-            encoder = encoder_init(ENCODE_X264, width, height, X264_CSP_I420);
+            encoder = encoder_init(ENCODE_X264, width, height, X264_CSP_I420, enable_log);
             break;
         case 2:
-            encoder = encoder_init(ENCODE_X265, width, height, X264_CSP_I420);
+            encoder = encoder_init(ENCODE_X265, width, height, X264_CSP_I420, enable_log);
             break;
     }
     encoder_open(encoder);

@@ -403,7 +403,7 @@ void all_fill_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t inpu
 }
 
 m_encoder *encoder_init(uint32_t codec_type, uint32_t width, uint32_t height,
-                        uint32_t format)
+                        uint32_t format, bool enable_log)
 {
     m_encoder *g_encoder = (m_encoder*)malloc(sizeof(m_encoder));
     g_encoder->width = width;
@@ -412,12 +412,12 @@ m_encoder *encoder_init(uint32_t codec_type, uint32_t width, uint32_t height,
     g_encoder->codec_type = codec_type;
     g_encoder->y_size = width * height; 
 
-    g_encoder->enable_log = 1;
-    if (1 == g_encoder->enable_log) {
+    g_encoder->enable_log = enable_log;
+    if (true == g_encoder->enable_log) {
         g_encoder->fp_log = fopen("./encoder.log", "w+");
         if (g_encoder->fp_log == NULL) {
             printf("error: %s.\n", strerror(errno));
-            g_encoder->enable_log = -1;
+            g_encoder->enable_log = false;
         }
     }
 
