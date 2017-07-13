@@ -308,7 +308,7 @@ void *x264_param_init(m_encoder *encoder)
     return (void*)param;
 }
 
-static void z_fill_x264_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size)
+static void all_fill_x264_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size)
 {
     switch(encoder->format) {
         case X264_CSP_I420: {
@@ -335,7 +335,7 @@ static void z_fill_x264_input_buffer(m_encoder *encoder, uint8_t *input_buf, uin
 
 }
 
-static void z_fill_x265_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size)
+static void all_fill_x265_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size)
 {
     uint8_t *buff = NULL;
 
@@ -382,15 +382,15 @@ static void z_fill_x265_input_buffer(m_encoder *encoder, uint8_t *input_buf, uin
 }
 
 
-void z_fill_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size)
+void all_fill_input_buffer(m_encoder *encoder, uint8_t *input_buf, uint32_t input_size)
 {
      switch(encoder->codec_type) {
          case ENCODE_X264: {
-             z_fill_x264_input_buffer(encoder, input_buf, input_size);
+             all_fill_x264_input_buffer(encoder, input_buf, input_size);
              break;
          }
          case ENCODE_X265: {
-             z_fill_x265_input_buffer(encoder, input_buf, input_size);
+             all_fill_x265_input_buffer(encoder, input_buf, input_size);
              break;
          }
          case ENCODE_VP8: {
